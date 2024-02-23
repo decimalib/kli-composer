@@ -1,6 +1,10 @@
 # Kli-Composer
 
-Kli-Composer is a DSL for defining and running command-line interfaces (CLIs) for Kotlin Multiplatform projects. 
+<p align="center">
+    <img src="./docs/images/kli-composer-logo.jpeg" width="400">
+</p>
+
+Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
 
 > [!IMPORTANT]
 > This project is still in the early stages of development and is not yet ready for use.
@@ -19,9 +23,7 @@ val kli = kliComposer {
                 println("Debug mode enabled")
             }
         }
-        argument("input") {
-            description("Input file")
-        }
+        argument("input")
         execute {
             println("Running the application")
         }
@@ -37,11 +39,72 @@ val kli = kliComposer {
 
 ### Running the CLI
 
+When calling the `run` method, the CLI will parse the command-line arguments and options and execute the appropriate command registered.
+
 ```kotlin
 fun main() {
-    val kli = KliComposer { 
-        // ...
+    val kli = kliComposer {
+        //... 
     }
     kli.run()
 }
 ```
+
+<table>
+<tr>
+<td> Command </td> <td> Output </td>
+</tr>
+<tr>
+<td>
+
+```bash
+$ ./kli run --debug input.txt
+```
+
+</td>
+<td>
+
+```
+Debug mode enabled
+Running the application
+```
+
+</td>
+</tr>
+<tr>
+<td>
+
+```bash
+$ ./kli test
+```
+
+</td>
+<td>
+
+```
+Running tests
+```
+
+</td>
+<tr>
+<td>
+
+```bash
+$ ./kli help
+```
+
+</td>
+<td>
+
+```
+run [--debug] <input>
+    desc: Run the application
+    debug: Enable debug mode
+test
+    description: Run tests
+```
+</tr>
+</table>
+
+> [!NOTE]
+> If a description for a command, argument or option is not provided, it will be omitted from the help output.
