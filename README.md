@@ -10,29 +10,29 @@ Kli-Composer is a DSL for defining and running command-line interfaces (CLIs) fo
 ### Defining the CLI
 
 ```kotlin
-val kli: KliComposer = kliComposer {
-        command("run") {
-            description("Run the application")
-            option("--debug") {
-                description("Enable debug mode")
-                execute {
-                    println("Debug mode enabled")
-                }
-            }
-            argument("input") {
-                description("Input file")
-            }
+val kli = kliComposer {
+    command("run") {
+        description("Run the application")
+        option("--debug") {
+            description("Enable debug mode")
             execute {
-                println("Running the application")
+                println("Debug mode enabled")
             }
         }
-        command("test") {
-            description("Run tests")
-            execute {
-                println("Running tests")
-            }
+        argument("input") {
+            description("Input file")
+        }
+        execute {
+            println("Running the application")
         }
     }
+    command("test") {
+        description("Run tests")
+        execute {
+            println("Running tests")
+        }
+    }
+}
 ```
 
 ### Running the CLI
@@ -42,13 +42,6 @@ fun main() {
     val kli = KliComposer { 
         // ...
     }
-    kli.run()
-}
-```
-
-```kotlin
-fun main() {
-    val kli = KliComposer.fromYaml("kli.yaml")
     kli.run()
 }
 ```
