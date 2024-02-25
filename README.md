@@ -1,11 +1,10 @@
 # Kli-Composer
 
-> Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
-
 <p align="center">
-    <img src="./docs/images/kli-composer-logo.jpeg" width="250">
+    <img src="./docs/images/kli-composer-logo.jpeg" width="300">
 </p>
 
+Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
 
 > [!IMPORTANT]
 > This project is still in the early stages of development and is not yet ready for use.
@@ -16,21 +15,19 @@
 
 ```kotlin
 val kli = kliComposer {
-    command("run") {
-        description("Run the application")
-        option("--debug") {
-            description("Enable debug mode")
-            execute {
-                println("Debug mode enabled")
+    command("run", "Run the application") {
+        val debug: Boolean by flag("--debug", "Enable debug mode")
+        val inputFileName: String? by argument("input", "Input file")
+        execute {
+            println("Running application")
+            if (debug) {
+                println("Debug mode enabled for file: $inputFileName")
+            } else {
+                println("Debug mode disabled for file: $inputFileName")
             }
         }
-        argument("input")
-        execute {
-            println("Running the application")
-        }
     }
-    command("test") {
-        description("Run tests")
+    command("test", "Run tests") {
         execute {
             println("Running tests")
         }
@@ -66,8 +63,8 @@ $ ./kli run --debug input.txt
 <td>
 
 ```
-Debug mode enabled
-Running the application
+Running application
+Debug mode enabled for file: input.txt
 ```
 
 </td>
@@ -102,7 +99,7 @@ run [--debug] <input>
     desc: Run the application
     debug: Enable debug mode
 test
-    description: Run tests
+    desc: Run tests
 ```
 </tr>
 </table>
