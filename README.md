@@ -1,10 +1,11 @@
 # Kli-Composer
 
+> Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
+
 <p align="center">
-    <img src="./docs/images/kli-composer-logo.jpeg" width="400">
+    <img src="./docs/images/kli-composer-logo.jpeg" width="250">
 </p>
 
-Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
 
 > [!IMPORTANT]
 > This project is still in the early stages of development and is not yet ready for use.
