@@ -1,10 +1,7 @@
-# Kli-Composer
+# Kli-Composer <img src="./docs/images/kli-composer-logo.png" width="130" align="left">
 
-<p align="center">
-    <img src="./docs/images/kli-composer-logo.jpeg" width="300">
-</p>
-
-Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin Multiplatform.
+Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin
+Multiplatform.
 
 > [!IMPORTANT]
 > This project is still in the early stages of development and is not yet ready for use.
@@ -20,11 +17,8 @@ val kli = kliComposer {
         val inputFileName: String? by argument("input", "Input file")
         execute {
             println("Running application")
-            if (debug) {
-                println("Debug mode enabled for file: $inputFileName")
-            } else {
-                println("Debug mode disabled for file: $inputFileName")
-            }
+            if (debug) println("Debug mode enabled for file: $inputFileName")
+            else println("Debug mode disabled for file: $inputFileName")
         }
     }
     command("test", "Run tests") {
@@ -37,7 +31,8 @@ val kli = kliComposer {
 
 ### Running the CLI
 
-When calling the `run` method, the CLI will parse the command-line arguments and options and execute the appropriate command registered.
+When calling the `run` method, the CLI will parse the command-line arguments,
+flags and options and execute the appropriate command as registered.
 
 ```kotlin
 fun main() {
@@ -50,7 +45,7 @@ fun main() {
 
 <table>
 <tr>
-<td> Command </td> <td> Output </td>
+<td> <strong> Command </strong> </td> <td> <strong> Output </strong> </td>
 </tr>
 <tr>
 <td>
@@ -101,6 +96,7 @@ run [--debug] <input>
 test
     desc: Run tests
 ```
+
 </tr>
 </table>
 

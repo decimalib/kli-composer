@@ -17,6 +17,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "decima.kliComposer"
+rootProject.name = "kliComposer"
 include(":library")
 include(":test-project")

@@ -8,13 +8,13 @@ fun main() {
             command("run", "Run the application") {
                 val debug: Boolean by flag("--debug", "Enable debug mode")
                 // TODO: should not be nullable, since argument is required
-                val inputFile: String? by argument("input", "Input file")
+                val inputFileName: String? by argument("input", "Input file")
                 execute {
                     println("Running application")
                     if (debug) {
-                        println("Debug mode enabled for file: $inputFile")
+                        println("Debug mode enabled for file: $inputFileName")
                     } else {
-                        println("Debug mode disabled for file: $inputFile")
+                        println("Debug mode disabled for file: $inputFileName")
                     }
                 }
             }
