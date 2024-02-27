@@ -1,4 +1,4 @@
-# Kli-Composer <img src="./docs/images/kli-composer-logo.png" width="130" align="left">
+# Kli-Composer <img src="./docs/images/kli-composer-logo.png" width="140" height="140" align="right" />
 
 Kli-Composer is a DSL for defining the building blocks of your next command-line interface (CLI) in Kotlin
 Multiplatform.
@@ -14,11 +14,13 @@ Multiplatform.
 val kli = kliComposer {
     command("run", "Run the application") {
         val debug: Boolean by flag("--debug", "Enable debug mode")
-        val inputFileName: String? by argument("input", "Input file")
+        val fileName: String by argument("input", "Input file name")
+        val iterations: Int? by option("--iter", "Number of iterations")
         execute {
             println("Running application")
-            if (debug) println("Debug mode enabled for file: $inputFileName")
-            else println("Debug mode disabled for file: $inputFileName")
+            val optionalValue = value ?: "not set"
+            if (debug) println("Debug mode enabled for file: $fileName, with $iterations iterations")
+            else println("Debug mode disabled for file: $fileName")
         }
     }
     command("test", "Run tests") {
@@ -51,7 +53,7 @@ fun main() {
 <td>
 
 ```bash
-$ ./kli run --debug input.txt
+$ ./kli run --debug input.txt --iter=10
 ```
 
 </td>
@@ -59,7 +61,7 @@ $ ./kli run --debug input.txt
 
 ```
 Running application
-Debug mode enabled for file: input.txt
+Debug mode enabled for file: input.txt, with 10 iterations
 ```
 
 </td>
@@ -90,9 +92,14 @@ $ ./kli help
 <td>
 
 ```
-run [--debug] <input>
+run [--debug] <input> [--iter=?]
     desc: Run the application
-    debug: Enable debug mode
+    options:
+        iter: Number of iterations
+    args:
+        input: Input file name
+    flags:
+        debug: Enable debug mode
 test
     desc: Run tests
 ```
@@ -101,4 +108,4 @@ test
 </table>
 
 > [!NOTE]
-> If a description for a command, argument or option is not provided, it will be omitted from the help output.
+> If a description for a command, argument, flag or option is not provided, it will be omitted from the help output.

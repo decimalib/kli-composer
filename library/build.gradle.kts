@@ -26,6 +26,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                // Kotlin Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
             }
         }
